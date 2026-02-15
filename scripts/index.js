@@ -1,3 +1,4 @@
+/* CARDS */ 
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -29,3 +30,14 @@ const initialCards = [
 initialCards.forEach(element => {
     console.log(element.name);
 });
+
+//DOCUMENT VARS
+const editProfileBtn = document.querySelector(".profile__edit-button");
+const editProfileForm = document.querySelector("#edit-profile-form");
+
+
+
+/* EVENT LISTENERS */
+
+
+//BUTTONS
