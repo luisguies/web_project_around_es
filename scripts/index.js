@@ -41,3 +41,14 @@ const editProfileForm = document.querySelector("#edit-profile-form");
 
 
 //BUTTONS
+
+
+/* MODAL FUNCTIONS */
+
+function openModal(modal){
+    modal.classList.add("modal_is-opened");
+}
+
+function closeModal(modal){
+    modal.classList.remove("modal_is-opened");
+}
