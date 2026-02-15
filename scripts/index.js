@@ -1,4 +1,4 @@
-/* CARDS */ 
+/* CARDS */
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -26,29 +26,40 @@ const initialCards = [
   },
 ];
 
-
-initialCards.forEach(element => {
-    console.log(element.name);
+initialCards.forEach((element) => {
+  console.log(element.name);
 });
 
-//DOCUMENT VARS
-const editProfileBtn = document.querySelector(".profile__edit-button");
-const editProfileForm = document.querySelector("#edit-profile-form");
+/* DOCUMENT VARIABLES */
+//PROFILE VARS
+const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
 
+//EDIT PROFILE VARS
+const editProfileBtn = document.querySelector(".profile__edit-button");
+const editProfileModal = document.querySelector("#edit-popup");
+const editProfileForm = editProfileModal.querySelector("#edit-profile-form");
+const EditProfileBtnClose = editProfileModal.querySelector(".popup__close");
+const editProfileTitle = editProfileModal.querySelector(".popup__input_type_name");
+const editProfileDescription = editProfileModal.querySelector(".popup__input_type_description");
 
 
 /* EVENT LISTENERS */
 
-
 //BUTTONS
-
+editProfileBtn.addEventListener("click", function () {
+  openModal(editProfileForm);
+});
+EditProfileBtnClose.addEventListener("click", function () {
+  closeModal(editProfileForm);
+});
 
 /* MODAL FUNCTIONS */
 
-function openModal(modal){
-    modal.classList.add("modal_is-opened");
+function openModal(modal) {
+  modal.classList.add("popup_is-opened");
 }
 
-function closeModal(modal){
-    modal.classList.remove("modal_is-opened");
+function closeModal(modal) {
+  modal.classList.remove("popup_is-opened");
 }
