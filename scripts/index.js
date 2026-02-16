@@ -48,6 +48,10 @@ const editProfileDescription = editProfileModal.querySelector(
 );
 const editProfileSubmitBtn = editProfileModal.querySelector("popup__button");
 
+//CARD VARS
+const cardTemplate = document.querySelector(".card__template").content.querySelector("card");
+const cardList = document.querySelector(".cards__list")
+
 /* EVENT LISTENERS */
 
 //BUTTONS
@@ -94,4 +98,16 @@ function handleOpenEditModal() {
   profileTitle.textContent = inputValues.title;
   profileDescription.textContent = inputValues.description;
   closeModal(editProfileModal);
+}
+
+function getCardElement(name, link) { // también aplica los parámetros predeterminados
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardImage = cardElement.querySelector("card__image");
+  
+  cardTitle.textContent = name ? name : "Sin titulo";
+  cardImage.src = link ? link : "./images/placeholder.jpg";
+  cardImage.alt = name ? name : "Sin titulo";
+
+  return cardElement;
 }
