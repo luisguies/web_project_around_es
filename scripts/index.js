@@ -26,9 +26,7 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((element) => {
-  console.log(element.name);
-});
+
 
 /* DOCUMENT VARIABLES */
 //PROFILE VARS
@@ -49,9 +47,13 @@ const editProfileDescription = editProfileModal.querySelector(
 const editProfileSubmitBtn = editProfileModal.querySelector("popup__button");
 
 //CARD VARS
-const cardTemplate = document.querySelector(".card__template").content.querySelector("card");
-const cardList = document.querySelector(".cards__list")
-
+const cardTemplate = document
+  .querySelector("#card__template")
+  .content.querySelector(".card");
+const cardListContainer = document.querySelector(".cards__list");
+const addCardBtn = document.querySelector(".profile__add-button");
+const addCardModal = document.querySelector("#new-card-popup");
+const closeAddCardBtn = addCardModal.querySelector(".popup__close");
 /* EVENT LISTENERS */
 
 //BUTTONS
@@ -64,6 +66,10 @@ editProfileBtnClose.addEventListener("click", function () {
 });
 
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
+
+addCardBtn.addEventListener("click", openModal);
+
+closeAddCardBtn.addEventListener("click", closeModal);
 
 /* MODAL FUNCTIONS */
 
@@ -89,7 +95,7 @@ function handleOpenEditModal() {
   openModal(editProfileModal);
 }
 
- function handleProfileFormSubmit (evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   const inputValues = {
     title: editProfileTitle.value,
@@ -100,14 +106,28 @@ function handleOpenEditModal() {
   closeModal(editProfileModal);
 }
 
-function getCardElement(name, link) { // también aplica los parámetros predeterminados
+function getCardElement(name, link) {
+  // también aplica los parámetros predeterminados
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
-  const cardImage = cardElement.querySelector("card__image");
-  
+  const cardImage = cardElement.querySelector(".card__image");
+
   cardTitle.textContent = name ? name : "Sin titulo";
   cardImage.src = link ? link : "./images/placeholder.jpg";
   cardImage.alt = name ? name : "Sin titulo";
 
   return cardElement;
 }
+
+function renderCard(name, link, cardListContainer) {
+  const cardEl = getCardElement(name, link);
+  cardListContainer.append(cardEl);
+}
+
+function handleCardSubmit() {}
+
+
+initialCards.forEach((element) => {
+  renderCard(element.name, element.link, cardListContainer);
+  console.log(element.name);
+});
