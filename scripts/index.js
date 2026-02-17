@@ -61,6 +61,12 @@ const addCardForm = addCardModal.querySelector("#new-card-form");
 const cardTitle = addCardForm.querySelector(".popup__input_type_card-name");
 const cardSrc = addCardForm.querySelector(".popup__input_type_url");
 
+//IMAGE MODAL
+const imageModal = document.querySelector("#image-popup");
+const imagePicture = imageModal.querySelector(".popup__image");
+const imageClose = imageModal.querySelector(".popup__close");
+const imageCaption = imageModal.querySelector(".popup__caption");
+
 /* EVENT LISTENERS */
 
 //BUTTONS
@@ -124,10 +130,31 @@ function getCardElement(name, link) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
+  const cardLikeBtn = cardElement.querySelector(".card__like-button");
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-button");
+
 
   cardTitle.textContent = name ? name : "Sin titulo";
   cardImage.src = link ? link : "./images/placeholder.jpg";
   cardImage.alt = name ? name : "Sin titulo";
+
+  cardLikeBtn.addEventListener("click", function (evt) {
+    evt.target.classList.toggle("card__like-button_is-active");
+  });
+
+  cardDeleteBtn.addEventListener("click", function (evt) {
+    cardElement.remove();
+  });
+
+  cardImage.addEventListener("click", function () {
+    imageModal.classList.add("popup_is-opened");
+    imagePicture.src = cardImage.src;
+    imagePicture.alt = cardImage.alt;
+    imageCaption.textContent = cardTitle.textContent;
+
+  });
+
+
 
   return cardElement;
 }
