@@ -67,9 +67,13 @@ editProfileBtnClose.addEventListener("click", function () {
 
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
-addCardBtn.addEventListener("click", openModal);
+addCardBtn.addEventListener("click", function () {
+  openModal(addCardModal);
+});
 
-closeAddCardBtn.addEventListener("click", closeModal);
+closeAddCardBtn.addEventListener("click", function () {
+  closeModal(addCardModal);
+});
 
 /* MODAL FUNCTIONS */
 
