@@ -64,7 +64,7 @@ const cardSrc = addCardForm.querySelector(".popup__input_type_url");
 //IMAGE MODAL
 const imageModal = document.querySelector("#image-popup");
 const imagePicture = imageModal.querySelector(".popup__image");
-const imageClose = imageModal.querySelector(".popup__close");
+const imageCloseBtn = imageModal.querySelector(".popup__close");
 const imageCaption = imageModal.querySelector(".popup__caption");
 
 /* EVENT LISTENERS */
@@ -147,14 +147,18 @@ function getCardElement(name, link) {
   });
 
   cardImage.addEventListener("click", function () {
-    imageModal.classList.add("popup_is-opened");
     imagePicture.src = cardImage.src;
     imagePicture.alt = cardImage.alt;
     imageCaption.textContent = cardTitle.textContent;
-
+    openModal(imageModal);
   });
 
-
+  imageCloseBtn.addEventListener("click", function() {
+    imagePicture.src = "#";
+    imagePicture.alt = "";
+    imageCaption.text_content = "";
+    closeModal(imageModal);
+  })
 
   return cardElement;
 }
