@@ -54,6 +54,13 @@ const cardListContainer = document.querySelector(".cards__list");
 const addCardBtn = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#new-card-popup");
 const closeAddCardBtn = addCardModal.querySelector(".popup__close");
+
+
+//CARD FORM VARIABLES
+const addCardForm = addCardModal.querySelector("#new-card-form");
+const cardTitle = addCardForm.querySelector(".popup__input_type_card-name");
+const cardSrc = addCardForm.querySelector(".popup__input_type_url");
+
 /* EVENT LISTENERS */
 
 //BUTTONS
@@ -74,6 +81,8 @@ addCardBtn.addEventListener("click", function () {
 closeAddCardBtn.addEventListener("click", function () {
   closeModal(addCardModal);
 });
+
+addCardForm.addEventListener("submit", handleCardSubmit);
 
 /* MODAL FUNCTIONS */
 
@@ -128,7 +137,15 @@ function renderCard(name, link, cardListContainer) {
   cardListContainer.append(cardEl);
 }
 
-function handleCardSubmit() {}
+function handleCardSubmit(evt) {
+  evt.preventDefault();
+  const inputValues = {
+    title: cardTitle.value,
+    src: cardSrc.value
+  };
+  renderCard(inputValues.title, inputValues.src, cardListContainer);
+  closeModal(addCardModal);
+}
 
 
 initialCards.forEach((element) => {
